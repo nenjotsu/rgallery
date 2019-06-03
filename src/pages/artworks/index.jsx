@@ -1,0 +1,195 @@
+/* eslint react/display-name: 0 */
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import { useTrail } from 'react-spring';
+import * as lodash from 'lodash';
+import styled from 'styled-components';
+import { Layout } from '../../components';
+import RandomColor, { hexToRGB } from '../../components/RandomColor';
+import '../style.css';
+
+const Content = styled.div`
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+
+  a {
+    color: #fff;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    padding: 2rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+  h2 {
+    font-size: 0.5em;
+    margin-top: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  h3 {
+    font-size: 0.5em;
+    margin-top: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const Overlay = styled.div`
+  background-color: ${props => props.theme.brand.primary};
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+`;
+
+const TracedGlow = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.08;
+  filter: invert(100%);
+  z-index: -1;
+`;
+
+const Service = styled.div`
+  font-size: 0.3em;
+  opacity: 0.9;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+`;
+
+const Artworks = ({ data, location }) => {
+  const list = data.allStrapiArtworks.edges;
+  const trailartworks = useTrail(list.length, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
+  const color = RandomColor();
+  const transparentColor = hexToRGB(color, 0.1);
+
+  return (
+    <Layout pathname={location.pathname}>
+      <div className="masonry">
+        {trailartworks.map((style, index) => {
+          const artwork = data.allStrapiArtworks.edges[index].node;
+          return (
+            <div
+              className="item"
+              style={{
+                ...style,
+              }}
+            >
+              <div className="item__content  item__content--large">
+                <Content>
+                  <Link to={artwork.id}>
+                    {artwork.thumbnail && (
+                      <TracedGlow
+                        src={artwork.thumbnail.childImageSharp.fluid}
+                        alt=""
+                      />
+                    )}
+                    <Overlay style={{ backgroundColor: transparentColor }} />
+                    <h2>{artwork.title}</h2>
+                    {lodash.has(artwork, 'sizes.descriptions') && (
+                      <Service>
+                        {artwork.sizes && artwork.sizes.descriptions}
+                      </Service>
+                    )}
+                    {lodash.has(artwork, 'medium.name') && (
+                      <Service>{artwork.medium && artwork.medium.name}</Service>
+                    )}
+                    {lodash.has(artwork, 'exhibition.title') && (
+                      <Service>
+                        Exhibition:{' '}
+                        {artwork.exhibition && artwork.exhibition.title}
+                      </Service>
+                    )}
+                    {lodash.has(artwork, 'artist.name') &&
+                      artwork.artist.name && (
+                        <h3>Artist: {artwork.artist && artwork.artist.name}</h3>
+                      )}
+                  </Link>
+                </Content>
+                {artwork.thumbnail && artwork.thumbnail.publicURL && (
+                  <img
+                    className="item__img"
+                    src={artwork.thumbnail.publicURL}
+                    alt=""
+                  />
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Layout>
+  );
+};
+
+export default Artworks;
+
+Artworks.propTypes = {
+  data: PropTypes.shape({
+    allStrapiArtworks: PropTypes.shape({
+      edges: PropTypes.array.isRequired,
+    }),
+  }).isRequired,
+  location: PropTypes.object.isRequired,
+};
+
+export const pageQuery = graphql`
+  query ArtworksQuery {
+    allStrapiArtworks {
+      edges {
+        node {
+          id
+          title
+          descriptions
+          thumbnail {
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 850, quality: 90) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          artist {
+            id
+            name
+          }
+          medium {
+            name
+          }
+          sizes {
+            descriptions
+          }
+          exhibition {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+`;

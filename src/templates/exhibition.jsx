@@ -133,7 +133,7 @@ const ExhibitionTemplate = ({ data, location }) => {
         <BGImage customcolor={exhibition.color}>
           {exhibition.thumbnail && (
             <Img
-              fluid={data.file.childImageSharp.fluid}
+              fluid={exhibition.thumbnail.childImageSharp.fluid}
               alt={exhibition.title}
             />
           )}

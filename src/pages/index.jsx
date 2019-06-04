@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useTrail } from 'react-spring';
 import styled from 'styled-components';
 import * as lodash from 'lodash';
+import Img from 'gatsby-image';
 import { Carousel } from 'react-responsive-carousel';
 import { Layout } from '../components';
 import RandomColor, { hexToRGB } from '../components/RandomColor';
@@ -99,11 +100,12 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout pathname={location.pathname}>
-      <Carousel>
+      <Carousel showThumbs={false}>
         {trailBanners.map((style, index) => (
-          <img
-            src={banners[index].node.thumbnail.publicURL}
-            alt="RGallery Contemporary Arts"
+          <Img
+            key={index}
+            fluid={banners[index].node.thumbnail.childImageSharp.fluid}
+            alt="R Gallery Social Pictures"
           />
         ))}
       </Carousel>
@@ -148,13 +150,17 @@ const Index = ({ data, location }) => {
                       )}
                   </Link>
                 </Content>
-                {artwork.thumbnail && artwork.thumbnail.publicURL && (
-                  <img
+                {artwork.thumbnail && (
+                  <Img
                     className="item__img"
-                    src={artwork.thumbnail.publicURL}
-                    alt=""
+                    key={artwork.id}
+                    fluid={artwork.thumbnail.childImageSharp.fluid}
+                    alt={`${artwork.title} by ${artwork.artist.name}`}
                   />
                 )}
+                <p style={{ fontSize: '.3em', textAlign: 'center' }}>{`${
+                  artwork.title
+                } by: ${artwork.artist.name}`}</p>
               </div>
             </div>
           );
@@ -187,6 +193,11 @@ export const pageQuery = graphql`
           name
           thumbnail {
             publicURL
+            childImageSharp {
+              fluid(maxWidth: 850, quality: 50) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
@@ -200,7 +211,7 @@ export const pageQuery = graphql`
           thumbnail {
             publicURL
             childImageSharp {
-              fluid(maxWidth: 850, quality: 90) {
+              fluid(maxWidth: 250, quality: 20) {
                 ...GatsbyImageSharpFluid
               }
             }

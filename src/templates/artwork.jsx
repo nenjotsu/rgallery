@@ -80,19 +80,21 @@ const ArtworkTemplate = ({ data }) => {
     to: { opacity: 1 },
   });
 
-  const props = {
+  const ReactImageZoomProps = {
     width: 400,
     zoomWidth: 500,
     img: artwork.thumbnail.publicURL,
   };
 
-  const emailSubject = encodeURIComponent(
-    `Artwork: "${artwork.title}" by: ${artwork.artist.name} - Inquiry`,
-  );
+  const artworkTitleArtist = `Artwork: "${artwork.title}" by: ${
+    artwork.artist.name
+  } - Inquiry`;
+
+  const emailSubject = encodeURIComponent(artworkTitleArtist);
 
   return (
-    <Layout pathname="" customSEO>
-      <SEO pathname="" />
+    <Layout pathname={artworkTitleArtist} customSEO>
+      <SEO pathname={artworkTitleArtist} />
       <Hero>
         <BGImage customcolor={artwork.color}>
           {artwork.thumbnail && (
@@ -137,14 +139,15 @@ const ArtworkTemplate = ({ data }) => {
             <ReactMarkdown source={artwork.descriptions} />
           )}
         </animated.div>
-        <ReactImageZoom className="img-zoom" {...props} />
+        <ReactImageZoom className="img-zoom" {...ReactImageZoomProps} />
         <p>
           To inquire on available work of art, please call or text us at
           +63917-7180-777.
           <br />
           You may also send us an email to{' '}
+          <strong>rgallery.ph@gmail.com</strong> or click{' '}
           <a href={`mailto:rgallery.ph@gmail.com?subject=${emailSubject}`}>
-            rgallery.ph@gmail.com.
+            here.
           </a>
         </p>
       </Container>

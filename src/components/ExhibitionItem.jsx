@@ -20,7 +20,7 @@ const Content = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-
+  padding: 20px;
   a {
     color: #fff;
     height: 100%;
@@ -54,6 +54,7 @@ const ImageWrapper = styled.div`
     top: 0;
     width: 100%;
 
+    padding: 20px;
     > div {
       position: static !important;
     }
@@ -93,7 +94,14 @@ const ExhibitionItem = ({ node, style, testid }) => (
   <Item key={testid} style={style} data-testid={testid}>
     <Content>
       <ImageWrapper>
-        {node.thumbnail && <Img fluid={node.thumbnail.childImageSharp.fluid} />}
+        {node.thumbnail && (
+          <Img
+            style={{
+              padding: 20,
+            }}
+            fluid={node.thumbnail.childImageSharp.fluid}
+          />
+        )}
       </ImageWrapper>
       <Link to={testid}>
         {node.thumbnail && (

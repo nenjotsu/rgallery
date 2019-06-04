@@ -53,8 +53,6 @@ const Content = styled(Container)`
   left: 0;
   right: 0;
   bottom: 0;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
   z-index: 3;
 `;
 
@@ -134,7 +132,10 @@ const ExhibitionTemplate = ({ data, location }) => {
       <Hero>
         <BGImage customcolor={exhibition.color}>
           {exhibition.thumbnail && (
-            <Img fluid={exhibition.thumbnail.childImageSharp.fluid} alt="" />
+            <Img
+              fluid={data.file.childImageSharp.fluid}
+              alt={exhibition.title}
+            />
           )}
         </BGImage>
         <Content type="text">
@@ -158,12 +159,12 @@ const ExhibitionTemplate = ({ data, location }) => {
           {exhibition.descriptions && (
             <ReactMarkdown source={exhibition.descriptions} />
           )}
-          {artists.length > 0 && <div>Artists</div>}
+          {artists.length > 0 && <div>Artists:</div>}
           {artists.length > 0 && (
             <ul>
               {artists.map(a => {
                 return (
-                  <li>
+                  <li key={a.id} style={{ listStyle: 'none', marginBottom: 5 }}>
                     <Link to={`Artists_${a.id}`}>{a.name}</Link>
                   </li>
                 );
@@ -171,9 +172,9 @@ const ExhibitionTemplate = ({ data, location }) => {
             </ul>
           )}
         </animated.div>
-        <ImageWrapper>
+        <ImageWrapper style={{ textAlign: 'center', marginBottom: 30 }}>
           {exhibition.thumbnail && (
-            <Img fluid={exhibition.thumbnail.childImageSharp.fluid} />
+            <Img fixed={exhibition.thumbnail.childImageSharp.fixed} />
           )}
         </ImageWrapper>
         <div className="masonry">
@@ -198,12 +199,21 @@ ExhibitionTemplate.propTypes = {
     strapiExhibitions: PropTypes.shape({
       title: PropTypes.string.isRequired,
     }),
+    file: PropTypes.object,
   }).isRequired,
   location: PropTypes.object.isRequired,
 };
 
 export const pageQuery = graphql`
   query ExhibitionTemplate($id: String!) {
+    file(id: { eq: "cd29e3f2-ed71-508b-996a-084929a8f429" }) {
+      id
+      childImageSharp {
+        fluid(maxWidth: 850, quality: 40) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     strapiExhibitions(id: { eq: $id }) {
       title
       descriptions
@@ -211,10 +221,10 @@ export const pageQuery = graphql`
       date_to
       thumbnail {
         childImageSharp {
-          fixed(width: 200, height: 125) {
+          fixed(width: 600) {
             ...GatsbyImageSharpFixed
           }
-          fluid(maxWidth: 850, quality: 90) {
+          fluid(maxWidth: 450, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -226,7 +236,7 @@ export const pageQuery = graphql`
         thumbnail {
           publicURL
           childImageSharp {
-            fluid(maxWidth: 850, quality: 90) {
+            fluid(maxWidth: 250, quality: 50) {
               ...GatsbyImageSharpFluid
             }
           }

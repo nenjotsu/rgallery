@@ -235,6 +235,41 @@
         "path": "/Artists_5cf4ddb778882d21696d2acc"
     },
     {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-615-e-978882-d-21696-d-2-ade-a8b",
+        "path": "/Artists_5cf615e978882d21696d2ade"
+    },
+    {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-6160-d-78882-d-21696-d-2-ae-1-f6e",
+        "path": "/Artists_5cf6160d78882d21696d2ae1"
+    },
+    {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-6162878882-d-21696-d-2-ae-4-036",
+        "path": "/Artists_5cf6162878882d21696d2ae4"
+    },
+    {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-6175478882-d-21696-d-2-ae-7-1e7",
+        "path": "/Artists_5cf6175478882d21696d2ae7"
+    },
+    {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-617-a-478882-d-21696-d-2-aea-cde",
+        "path": "/Artists_5cf617a478882d21696d2aea"
+    },
+    {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-617-c-078882-d-21696-d-2-aed-f37",
+        "path": "/Artists_5cf617c078882d21696d2aed"
+    },
+    {
+        "componentChunkName": "component---src-templates-artist-jsx",
+        "jsonName": "artists-5-cf-6180078882-d-21696-d-2-af-0-a9f",
+        "path": "/Artists_5cf6180078882d21696d2af0"
+    },
+    {
         "componentChunkName": "component---src-templates-artwork-jsx",
         "jsonName": "artworks-5-ce-2-d-3-ff-648-a-2-a-2-c-73-a-30891-a7e",
         "path": "/Artworks_5ce2d3ff648a2a2c73a30891"
@@ -535,13 +570,13 @@
         "path": "/artworks/"
     },
     {
-        "componentChunkName": "component---cache-dev-404-page-js",
-        "jsonName": "dev-404-page-5f9",
-        "path": "/dev-404-page/"
-    },
-    {
         "componentChunkName": "component---src-pages-exhibitions-index-jsx",
         "jsonName": "exhibitions-90c",
         "path": "/exhibitions/"
+    },
+    {
+        "componentChunkName": "component---node-modules-gatsby-plugin-offline-app-shell-js",
+        "jsonName": "offline-plugin-app-shell-fallback-a30",
+        "path": "/offline-plugin-app-shell-fallback/"
     }
 ]

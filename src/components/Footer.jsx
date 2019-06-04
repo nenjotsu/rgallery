@@ -15,7 +15,8 @@ const Wrapper = styled.footer`
 
 const Footer = () => (
   <Wrapper data-testid="footer">
-    Copyright &copy; 2019. All right reserved. RGallery.
+    Copyright &copy; 2019. All right reserved. RGallery.{' '}
+    <a href="mailto:rgallery.ph@gmail.com">rgallery.ph@gmail.com</a>
   </Wrapper>
 );
 

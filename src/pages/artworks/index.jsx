@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useTrail } from 'react-spring';
 import * as lodash from 'lodash';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { Layout } from '../../components';
 import RandomColor, { hexToRGB } from '../../components/RandomColor';
@@ -132,12 +133,16 @@ const Artworks = ({ data, location }) => {
                   </Link>
                 </Content>
                 {artwork.thumbnail && artwork.thumbnail.publicURL && (
-                  <img
+                  <Img
                     className="item__img"
-                    src={artwork.thumbnail.publicURL}
-                    alt=""
+                    key={artwork.id}
+                    fluid={artwork.thumbnail.childImageSharp.fluid}
+                    alt={`${artwork.title} by ${artwork.artist.name}`}
                   />
                 )}
+                <p style={{ fontSize: '.3em', textAlign: 'center' }}>{`${
+                  artwork.title
+                } by: ${artwork.artist.name}`}</p>
               </div>
             </div>
           );
@@ -169,7 +174,7 @@ export const pageQuery = graphql`
           thumbnail {
             publicURL
             childImageSharp {
-              fluid(maxWidth: 850, quality: 90) {
+              fluid(maxWidth: 250, quality: 50) {
                 ...GatsbyImageSharpFluid
               }
             }

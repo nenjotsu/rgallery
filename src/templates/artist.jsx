@@ -53,7 +53,7 @@ const ArtistTemplate = ({ data, location }) => {
 
   const { artworks = [] } = artist;
 
-  const trail = useTrail(artworks.length, {
+  const trailArtworks = useTrail(artworks.length, {
     from: { opacity: 0 },
     to: { opacity: 1 },
   });
@@ -77,8 +77,8 @@ const ArtistTemplate = ({ data, location }) => {
         <animated.div style={contentProps}>
           {artist.biography && <ReactMarkdown source={artist.biography} />}
         </animated.div>
-        <ListWrapper>
-          {trail.map((style, index) => (
+        <div className="masonry">
+          {trailArtworks.map((style, index) => (
             <ArtworkItem
               testid={`/Artworks_${artworks[index].id}`}
               style={style}
@@ -86,7 +86,7 @@ const ArtistTemplate = ({ data, location }) => {
               node={artworks[index]}
             />
           ))}
-        </ListWrapper>
+        </div>
       </Container>
     </Layout>
   );
@@ -109,10 +109,7 @@ export const pageQuery = graphql`
       name
       thumbnail {
         childImageSharp {
-          fixed(width: 200, height: 125) {
-            ...GatsbyImageSharpFixed
-          }
-          fluid(maxWidth: 850, quality: 90) {
+          fluid(maxWidth: 350, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -123,10 +120,7 @@ export const pageQuery = graphql`
         title
         thumbnail {
           childImageSharp {
-            fixed(width: 200, height: 125) {
-              ...GatsbyImageSharpFixed
-            }
-            fluid(maxWidth: 850, quality: 90) {
+            fluid(maxWidth: 850, quality: 50) {
               ...GatsbyImageSharpFluid
             }
           }

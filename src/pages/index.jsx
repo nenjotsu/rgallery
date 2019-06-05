@@ -100,7 +100,7 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout pathname={location.pathname}>
-      <Carousel showThumbs={false}>
+      <Carousel showThumbs={false} autoPlay={true} interval={3000}>
         {trailBanners.map((style, index) => (
           <Img
             key={index}

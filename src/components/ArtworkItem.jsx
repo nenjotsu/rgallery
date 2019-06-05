@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import * as lodash from 'lodash';
+import Img from 'gatsby-image';
 import RandomColor, { hexToRGB } from './RandomColor';
 
 const Content = styled.div`
@@ -109,13 +110,17 @@ const ArtowrkItem = ({ node, style, testid }) => {
             )}
           </Link>
         </Content>
-        {node.thumbnail && node.thumbnail.publicURL && (
-          <img
+        {node.thumbnail && (
+          <Img
             className="item__img"
-            src={node.thumbnail.publicURL}
-            alt={node.title}
+            key={node.id}
+            fluid={node.thumbnail.childImageSharp.fluid}
+            alt={`${node.title}`}
           />
         )}
+        <p style={{ fontSize: '.3em', textAlign: 'center' }}>{`${
+          node.title
+        }`}</p>
       </div>
     </div>
   );

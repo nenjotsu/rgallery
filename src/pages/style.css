@@ -58,10 +58,8 @@ html {
   align-items: center;
   height: 220px;
   font-size: 40px;
-  color: #360007;
-  /* background: currentColor; */
   box-sizing: border-box;
-  color: #720026;
+  color: #2196f3;
 }
 
 .item__content:hover {

@@ -58,7 +58,7 @@ const ArtworkTemplate = ({ data }) => {
   const color = RandomColor();
   const pastelColor = hexToRGB(color, 0.8);
 
-  const artwork = { ...data.strapiArtworks, color: pastelColor };
+  const artwork = { ...data.strapiArtworks, color: '#000' };
 
   const titleProps = useSpring({
     config: config.slow,
@@ -174,7 +174,7 @@ export const pageQuery = graphql`
       thumbnail {
         publicURL
         childImageSharp {
-          fluid(maxWidth: 850, quality: 90) {
+          fluid(maxWidth: 550, quality: 50) {
             ...GatsbyImageSharpFluid
           }
         }

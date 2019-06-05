@@ -96,12 +96,13 @@ const Artworks = ({ data, location }) => {
           const artwork = data.allStrapiArtworks.edges[index].node;
           return (
             <div
+              key={artwork.id}
               className="item"
               style={{
                 ...style,
               }}
             >
-              <div className="item__content  item__content--large">
+              <div className="item__content item__content--large">
                 <Content>
                   <Link to={artwork.id}>
                     {artwork.thumbnail && (
@@ -132,7 +133,7 @@ const Artworks = ({ data, location }) => {
                       )}
                   </Link>
                 </Content>
-                {artwork.thumbnail && artwork.thumbnail.publicURL && (
+                {artwork.thumbnail && (
                   <Img
                     className="item__img"
                     key={artwork.id}
@@ -172,7 +173,6 @@ export const pageQuery = graphql`
           title
           descriptions
           thumbnail {
-            publicURL
             childImageSharp {
               fluid(maxWidth: 250, quality: 50) {
                 ...GatsbyImageSharpFluid

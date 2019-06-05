@@ -105,13 +105,10 @@ const ArtistItem = ({ node, style, testid }) => (
         {node.thumbnail ? (
           <Img fluid={node.thumbnail.childImageSharp.fluid} />
         ) : (
-          <ImgDefault>
-            <img
-              className="img-fluid"
-              src={ImagePlaceholder}
-              alt={`R Gallery Contemporary Arts - ${node.name}`}
-            />
-          </ImgDefault>
+          <Img
+            fluid={node.artworks[0].thumbnail.childImageSharp.fluid}
+            alt={`R Gallery Contemporary Arts - ${node.name}`}
+          />
         )}
       </ImageWrapper>
       <Link to={testid}>

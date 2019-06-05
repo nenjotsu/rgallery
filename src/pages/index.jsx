@@ -100,7 +100,12 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout pathname={location.pathname}>
-      <Carousel showThumbs={false} autoPlay={true} interval={3000}>
+      <Carousel
+        showThumbs={false}
+        autoPlay={true}
+        interval={3000}
+        style={{ marginBottom: 20 }}
+      >
         {trailBanners.map((style, index) => (
           <Img
             key={index}
@@ -114,6 +119,7 @@ const Index = ({ data, location }) => {
           const artwork = data.allStrapiArtworks.edges[index].node;
           return (
             <div
+              key={artwork.id}
               className="item"
               style={{
                 ...style,
@@ -192,7 +198,6 @@ export const pageQuery = graphql`
           id
           name
           thumbnail {
-            publicURL
             childImageSharp {
               fluid(maxWidth: 850, quality: 50) {
                 ...GatsbyImageSharpFluid
@@ -209,7 +214,6 @@ export const pageQuery = graphql`
           title
           descriptions
           thumbnail {
-            publicURL
             childImageSharp {
               fluid(maxWidth: 250, quality: 20) {
                 ...GatsbyImageSharpFluid

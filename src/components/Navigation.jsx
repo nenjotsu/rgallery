@@ -60,6 +60,9 @@ const Name = styled.div`
       text-decoration: none;
     }
   }
+  @media (max-width: ${props => props.theme.breakpoints.s}) {
+    order: 1;
+  }
   @media (max-width: ${props => props.theme.breakpoints.xs}) {
     order: 1;
     flex: 1 0 100%;
@@ -80,10 +83,12 @@ const SocialMedia = styled.div`
     margin-left: 1rem;
   }
   @media (max-width: ${props => props.theme.breakpoints.s}) {
-    padding: 0 1rem;
+    display: none;
+    padding: 1rem;
   }
   @media (max-width: ${props => props.theme.breakpoints.xs}) {
-    order: 3;
+    // order: 2;
+    display: none;
   }
 `;
 
@@ -144,6 +149,7 @@ const Navigation = () => (
             />
           </Link>
         </Name>
+
         <SocialMedia>
           <a
             href="https://www.instagram.com/rgallery.ph/"

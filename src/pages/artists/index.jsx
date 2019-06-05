@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useTrail } from 'react-spring';
 import styled from 'styled-components';
+import _filter from 'lodash/filter';
 import { Layout, ArtistItem } from '../../components';
 
 const ListWrapper = styled.div`
@@ -14,7 +15,11 @@ const ListWrapper = styled.div`
 `;
 
 const Artists = ({ data, location }) => {
-  const list = data.allStrapiArtists.edges;
+  const list = _filter(
+    data.allStrapiArtists.edges,
+    e => e.node.artworks.length > 0,
+  );
+
   const trail = useTrail(list.length, {
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -56,10 +61,7 @@ export const pageQuery = graphql`
           name
           thumbnail {
             childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
-              }
-              fluid(maxWidth: 250, quality: 50) {
+              fluid(maxWidth: 290, quality: 50) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -70,10 +72,7 @@ export const pageQuery = graphql`
             title
             thumbnail {
               childImageSharp {
-                fixed(width: 200, height: 125) {
-                  ...GatsbyImageSharpFixed
-                }
-                fluid(maxWidth: 850, quality: 50) {
+                fluid(maxWidth: 550, quality: 50) {
                   ...GatsbyImageSharpFluid
                 }
               }

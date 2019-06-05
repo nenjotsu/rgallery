@@ -84,7 +84,7 @@ const InfoBlock = styled.div`
 `;
 
 const ExhibitionTemplate = ({ data, location }) => {
-  const color = RandomColor();
+  const color = '#000000';
   const pastelColor = hexToRGB(color, 0.8);
 
   const exhibition = { ...data.strapiExhibitions, color: pastelColor };
@@ -209,7 +209,7 @@ export const pageQuery = graphql`
     file(id: { eq: "cd29e3f2-ed71-508b-996a-084929a8f429" }) {
       id
       childImageSharp {
-        fluid(maxWidth: 850, quality: 40) {
+        fluid(maxWidth: 650, quality: 40) {
           ...GatsbyImageSharpFluid
         }
       }
@@ -234,7 +234,6 @@ export const pageQuery = graphql`
         title
         descriptions
         thumbnail {
-          publicURL
           childImageSharp {
             fluid(maxWidth: 250, quality: 50) {
               ...GatsbyImageSharpFluid

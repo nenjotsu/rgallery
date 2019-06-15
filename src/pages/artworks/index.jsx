@@ -123,9 +123,7 @@ const Artworks = ({ data, location }) => {
                       <Service>{artwork.medium && artwork.medium.name}</Service>
                     )}
                     {lodash.has(artwork, 'createdAt') && (
-                      <Service>
-                        {getFullYear(artwork.createdAt, artwork.updatedAt)}
-                      </Service>
+                      <Service>{getFullYear(artwork.createdAt)}</Service>
                     )}
                     {lodash.has(artwork, 'exhibition.title') && (
                       <Service>

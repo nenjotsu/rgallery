@@ -1,5 +1,5 @@
-export const getFullYear = (dateString, updatedAt) => {
-  const text = updatedAt || dateString;
+export const getFullYear = dateString => {
+  const text = dateString;
   const d = new Date(text);
   const n = d.getFullYear();
   return n;

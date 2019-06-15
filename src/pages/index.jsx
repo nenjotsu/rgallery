@@ -9,6 +9,7 @@ import Img from 'gatsby-image';
 import { Carousel } from 'react-responsive-carousel';
 import { Layout } from '../components';
 import RandomColor, { hexToRGB } from '../components/RandomColor';
+import { getFullYear } from '../common/utils';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './style.css';
@@ -144,6 +145,11 @@ const Index = ({ data, location }) => {
                     {lodash.has(artwork, 'medium.name') && (
                       <Service>{artwork.medium && artwork.medium.name}</Service>
                     )}
+                    {lodash.has(artwork, 'createdAt') && (
+                      <Service>
+                        {getFullYear(artwork.createdAt, artwork.updatedAt)}
+                      </Service>
+                    )}
                     {lodash.has(artwork, 'exhibition.title') && (
                       <Service>
                         Exhibition:{' '}
@@ -234,6 +240,8 @@ export const pageQuery = graphql`
             id
             title
           }
+          createdAt
+          updatedAt
         }
       }
     }

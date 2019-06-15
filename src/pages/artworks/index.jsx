@@ -8,6 +8,7 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { Layout } from '../../components';
 import RandomColor, { hexToRGB } from '../../components/RandomColor';
+import { getFullYear } from '../../common/utils';
 import '../style.css';
 
 const Content = styled.div`
@@ -121,6 +122,11 @@ const Artworks = ({ data, location }) => {
                     {lodash.has(artwork, 'medium.name') && (
                       <Service>{artwork.medium && artwork.medium.name}</Service>
                     )}
+                    {lodash.has(artwork, 'createdAt') && (
+                      <Service>
+                        {getFullYear(artwork.createdAt, artwork.updatedAt)}
+                      </Service>
+                    )}
                     {lodash.has(artwork, 'exhibition.title') && (
                       <Service>
                         Exhibition:{' '}
@@ -193,6 +199,8 @@ export const pageQuery = graphql`
             id
             title
           }
+          createdAt
+          updatedAt
         }
       }
     }

@@ -80,61 +80,6 @@ const makeRequest = (graphql, request) =>
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  const projectPage = require.resolve('./src/templates/project.jsx');
-  const singlePage = require.resolve('./src/templates/single.jsx');
-
-  const result = await wrapper(
-    graphql(`
-      {
-        projects: allMdx(
-          filter: { fields: { sourceInstanceName: { eq: "projects" } } }
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-            }
-          }
-        }
-        single: allMdx(
-          filter: { fields: { sourceInstanceName: { eq: "pages" } } }
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-            }
-          }
-        }
-      }
-    `),
-  );
-  result.data.projects.edges.forEach(edge => {
-    createPage({
-      path: edge.node.fields.slug,
-      component: projectPage,
-      context: {
-        // Pass "slug" through context so we can reference it in our query like "$slug: String!"
-        slug: edge.node.fields.slug,
-      },
-    });
-  });
-  result.data.single.edges.forEach(edge => {
-    createPage({
-      path: edge.node.fields.slug,
-      component: singlePage,
-      context: {
-        slug: edge.node.fields.slug,
-      },
-    });
-  });
-
-  // artist {
-  //   name
-  // }
-  // title
   const getExhibitions = makeRequest(
     graphql,
     `{

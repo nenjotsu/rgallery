@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useTrail } from 'react-spring';
-import * as lodash from 'lodash';
+import _ from 'lodash';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { Layout } from '../../components';
@@ -105,7 +105,12 @@ const Artworks = ({ data, location }) => {
             >
               <div className="item__content item__content--large">
                 <Content>
-                  <Link to={artwork.id}>
+                  <Link
+                    // to={`${_.kebabCase(artwork.artist.name)}/${_.kebabCase(
+                    //   artwork.title,
+                    // )}/${artwork.id}`}
+                    to={artwork.id}
+                  >
                     {artwork.thumbnail && (
                       <TracedGlow
                         src={artwork.thumbnail.childImageSharp.fluid}
@@ -114,27 +119,26 @@ const Artworks = ({ data, location }) => {
                     )}
                     <Overlay style={{ backgroundColor: transparentColor }} />
                     <h2>{artwork.title}</h2>
-                    {lodash.has(artwork, 'sizes.descriptions') && (
+                    {_.has(artwork, 'sizes.descriptions') && (
                       <Service>
                         {artwork.sizes && artwork.sizes.descriptions}
                       </Service>
                     )}
-                    {lodash.has(artwork, 'medium.name') && (
+                    {_.has(artwork, 'medium.name') && (
                       <Service>{artwork.medium && artwork.medium.name}</Service>
                     )}
-                    {lodash.has(artwork, 'createdAt') && (
+                    {_.has(artwork, 'createdAt') && (
                       <Service>{getFullYear(artwork.createdAt)}</Service>
                     )}
-                    {lodash.has(artwork, 'exhibition.title') && (
+                    {_.has(artwork, 'exhibition.title') && (
                       <Service>
                         Exhibition:{' '}
                         {artwork.exhibition && artwork.exhibition.title}
                       </Service>
                     )}
-                    {lodash.has(artwork, 'artist.name') &&
-                      artwork.artist.name && (
-                        <h3>Artist: {artwork.artist && artwork.artist.name}</h3>
-                      )}
+                    {_.has(artwork, 'artist.name') && artwork.artist.name && (
+                      <h3>Artist: {artwork.artist && artwork.artist.name}</h3>
+                    )}
                   </Link>
                 </Content>
                 {artwork.thumbnail && (
@@ -145,9 +149,9 @@ const Artworks = ({ data, location }) => {
                     alt={`${artwork.title} by ${artwork.artist.name}`}
                   />
                 )}
-                <p style={{ fontSize: '.3em', textAlign: 'center' }}>{`${
-                  artwork.title
-                } by: ${artwork.artist.name}`}</p>
+                <p
+                  style={{ fontSize: '.3em', textAlign: 'center' }}
+                >{`${artwork.title} by: ${artwork.artist.name}`}</p>
               </div>
             </div>
           );

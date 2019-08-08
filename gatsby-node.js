@@ -61,8 +61,6 @@ exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
   actions.replaceWebpackConfig(config);
 };
 
-// / / / //
-
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
     // Query for nodes to use in creating pages.
@@ -81,58 +79,62 @@ const makeRequest = (graphql, request) =>
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
-  // Our templates for projects and files inside /pages/*.mdx
-  // const projectPage = require.resolve('./src/templates/project.jsx');
-  // const singlePage = require.resolve('./src/templates/single.jsx');
 
-  // const result = await wrapper(
-  //   graphql(`
-  //     {
-  //       projects: allMdx(
-  //         filter: { fields: { sourceInstanceName: { eq: "projects" } } }
-  //       ) {
-  //         edges {
-  //           node {
-  //             fields {
-  //               slug
-  //             }
-  //           }
-  //         }
-  //       }
-  //       single: allMdx(
-  //         filter: { fields: { sourceInstanceName: { eq: "pages" } } }
-  //       ) {
-  //         edges {
-  //           node {
-  //             fields {
-  //               slug
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `),
-  // );
-  // result.data.projects.edges.forEach(edge => {
-  //   createPage({
-  //     path: edge.node.fields.slug,
-  //     component: projectPage,
-  //     context: {
-  //       // Pass "slug" through context so we can reference it in our query like "$slug: String!"
-  //       slug: edge.node.fields.slug,
-  //     },
-  //   });
-  // });
-  // result.data.single.edges.forEach(edge => {
-  //   createPage({
-  //     path: edge.node.fields.slug,
-  //     component: singlePage,
-  //     context: {
-  //       slug: edge.node.fields.slug,
-  //     },
-  //   });
-  // });
+  const projectPage = require.resolve('./src/templates/project.jsx');
+  const singlePage = require.resolve('./src/templates/single.jsx');
 
+  const result = await wrapper(
+    graphql(`
+      {
+        projects: allMdx(
+          filter: { fields: { sourceInstanceName: { eq: "projects" } } }
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+            }
+          }
+        }
+        single: allMdx(
+          filter: { fields: { sourceInstanceName: { eq: "pages" } } }
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `),
+  );
+  result.data.projects.edges.forEach(edge => {
+    createPage({
+      path: edge.node.fields.slug,
+      component: projectPage,
+      context: {
+        // Pass "slug" through context so we can reference it in our query like "$slug: String!"
+        slug: edge.node.fields.slug,
+      },
+    });
+  });
+  result.data.single.edges.forEach(edge => {
+    createPage({
+      path: edge.node.fields.slug,
+      component: singlePage,
+      context: {
+        slug: edge.node.fields.slug,
+      },
+    });
+  });
+
+  // artist {
+  //   name
+  // }
+  // title
   const getExhibitions = makeRequest(
     graphql,
     `{
@@ -149,6 +151,9 @@ exports.createPages = async ({ actions, graphql }) => {
     // Create pages for each article.
     exhibitionsResult.data.allStrapiExhibitions.edges.forEach(({ node }) => {
       createPage({
+        // path: `/${_.kebabCase(node.artist.name)}/${_.kebabCase(node.title)}/${
+        //   node.id
+        // }`,
         path: `/${node.id}`,
         component: path.resolve(`src/templates/exhibition.jsx`),
         context: {

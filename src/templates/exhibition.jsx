@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as moment from 'moment';
 import { animated, useSpring, useTrail, config } from 'react-spring';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import ReactMarkdown from 'react-markdown';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -199,21 +198,12 @@ ExhibitionTemplate.propTypes = {
     strapiExhibitions: PropTypes.shape({
       title: PropTypes.string.isRequired,
     }),
-    file: PropTypes.object,
   }).isRequired,
   location: PropTypes.object.isRequired,
 };
 
 export const pageQuery = graphql`
   query ExhibitionTemplate($id: String!) {
-    file(id: { eq: "cd29e3f2-ed71-508b-996a-084929a8f429" }) {
-      id
-      childImageSharp {
-        fluid(maxWidth: 650, quality: 40) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
     strapiExhibitions(id: { eq: $id }) {
       title
       descriptions

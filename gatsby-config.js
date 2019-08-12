@@ -31,7 +31,7 @@ module.exports = {
       options: {
         apiURL: 'http://52.221.63.59:1337',
         contentTypes: ['artists', 'exhibitions', 'artworks', 'banners'],
-        queryLimit: 1000,
+        queryLimit: -1,
       },
     },
     {

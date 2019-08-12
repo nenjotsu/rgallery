@@ -86,9 +86,7 @@ const ArtworkTemplate = ({ data }) => {
     img: artwork.thumbnail.publicURL,
   };
 
-  const artworkTitleArtist = `Artwork: "${artwork.title}" by: ${
-    artwork.artist.name
-  } - Inquiry`;
+  const artworkTitleArtist = `Artwork: "${artwork.title}" by: ${artwork.artist.name} - Inquiry`;
 
   const emailSubject = encodeURIComponent(artworkTitleArtist);
 

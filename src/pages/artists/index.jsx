@@ -54,7 +54,7 @@ Artists.propTypes = {
 
 export const pageQuery = graphql`
   query ArtistsQuery {
-    allStrapiArtists {
+    allStrapiArtists(sort: { fields: name, order: ASC }, limit: -1) {
       edges {
         node {
           id

@@ -96,9 +96,6 @@ exports.createPages = async ({ actions, graphql }) => {
     // Create pages for each article.
     exhibitionsResult.data.allStrapiExhibitions.edges.forEach(({ node }) => {
       createPage({
-        // path: `/${_.kebabCase(node.artist.name)}/${_.kebabCase(node.title)}/${
-        //   node.id
-        // }`,
         path: `/${node.id}`,
         component: path.resolve(`src/templates/exhibition.jsx`),
         context: {
@@ -111,7 +108,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const getArtworks = makeRequest(
     graphql,
     `{
-      allStrapiArtworks {
+      allStrapiArtworks(sort: {order: DESC, fields: updatedAt}, limit: -1) {
         edges {
           node {
             id
@@ -124,6 +121,9 @@ exports.createPages = async ({ actions, graphql }) => {
     // Create pages for each article.
     artworksResult.data.allStrapiArtworks.edges.forEach(({ node }) => {
       createPage({
+        // path: `/${_.kebabCase(node.artist.name)}/${_.kebabCase(node.title)}/${
+        //   node.id
+        // }`,
         path: `/${node.id}`,
         component: path.resolve(`src/templates/artwork.jsx`),
         context: {

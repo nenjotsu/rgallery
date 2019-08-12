@@ -50,7 +50,7 @@ Exhibitions.propTypes = {
 
 export const pageQuery = graphql`
   query ExhibitionsQuery {
-    allStrapiExhibitions {
+    allStrapiExhibitions(sort: { order: DESC, fields: updatedAt }, limit: -1) {
       edges {
         node {
           id

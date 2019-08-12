@@ -105,12 +105,7 @@ const Artworks = ({ data, location }) => {
             >
               <div className="item__content item__content--large">
                 <Content>
-                  <Link
-                    // to={`${_.kebabCase(artwork.artist.name)}/${_.kebabCase(
-                    //   artwork.title,
-                    // )}/${artwork.id}`}
-                    to={artwork.id}
-                  >
+                  <Link to={artwork.id}>
                     {artwork.thumbnail && (
                       <TracedGlow
                         src={artwork.thumbnail.childImageSharp.fluid}
@@ -174,7 +169,7 @@ Artworks.propTypes = {
 
 export const pageQuery = graphql`
   query ArtworksQuery {
-    allStrapiArtworks {
+    allStrapiArtworks(sort: { order: DESC, fields: updatedAt }, limit: -1) {
       edges {
         node {
           id

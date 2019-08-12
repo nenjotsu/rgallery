@@ -12,40 +12,10 @@ import {
   Layout,
   Hero,
   BGImage,
-  RandomColor,
   hexToRGB,
   ArtworkItem,
 } from '../components';
 import '../pages/style.css';
-
-const ListWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  width: 100%;
-`;
-
-const formatDate = date => {
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  const day = date.getDate();
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-
-  return `${day} ${monthNames[monthIndex]} ${year}`;
-};
 
 const Content = styled(Container)`
   position: absolute;

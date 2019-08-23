@@ -108,6 +108,10 @@ const navs = [
     title: 'Artworks',
   },
   {
+    slug: '/news',
+    title: 'News',
+  },
+  {
     slug: '/exhibitions',
     title: 'Exhibitions',
   },

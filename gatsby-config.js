@@ -30,7 +30,13 @@ module.exports = {
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: 'http://52.221.63.59:1337',
-        contentTypes: ['artists', 'exhibitions', 'artworks', 'banners'],
+        contentTypes: [
+          'artists',
+          'exhibitions',
+          'artworks',
+          'banners',
+          'gallerynews',
+        ],
         queryLimit: -1,
       },
     },

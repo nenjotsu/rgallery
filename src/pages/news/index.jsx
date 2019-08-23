@@ -1,6 +1,6 @@
-/* eslint react/display-name: 0 */
+/* eslint react/display-title: 0 */
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
@@ -10,20 +10,20 @@ import Img from 'gatsby-image';
 import _filter from 'lodash/filter';
 import { Layout, Container } from '../../components';
 
-const ArtistListWrapper = styled.div`
+const NewsListWrapper = styled.div`
   padding-left: 30px;
   padding-right: 30px;
   height: auto;
   margin-bottom: 50px;
 `;
 
-const ArtistListItem = styled.div`
+const NewsListItem = styled.div`
   min-height: 350px;
   background: #f9f9f9;
   margin-top: 30px;
   padding: 20px;
   display: grid;
-  grid-template-columns: 60% 35%;
+  grid-template-columns: 60% 30%;
   grid-gap: 30px;
 `;
 
@@ -36,8 +36,8 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const Artists = ({ data, location }) => {
-  const list = _filter(data.allStrapiArtists.edges, e => e.node.isFeatured);
+const News = ({ data, location }) => {
+  const list = data.allStrapiGallerynews.edges;
 
   const trail = useTrail(list.length, {
     from: { opacity: 0 },
@@ -53,39 +53,37 @@ const Artists = ({ data, location }) => {
 
   return (
     <Layout pathname={location.pathname}>
-      <ArtistListWrapper>
+      <NewsListWrapper>
         {trail.map((style, index) => {
-          const artist = list[index].node;
+          const news = list[index].node;
           return (
-            <ArtistListItem key={artist.id}>
+            <NewsListItem key={news.id}>
               <Container type="text">
                 <animated.div style={contentProps}>
-                  <Link to={`/${artist.id}`}>
-                    <h3>{artist.name}</h3>
-                  </Link>
-                  {artist.biography && (
-                    <ReactMarkdown source={artist.biography} />
+                  <h3>{news.title}</h3>
+                  {news.description && (
+                    <ReactMarkdown source={news.description} />
                   )}
                 </animated.div>
               </Container>
               <ImageWrapper>
-                {artist.thumbnail && (
-                  <Img fluid={artist.thumbnail.childImageSharp.fluid} />
+                {news.thumbnail && (
+                  <Img fluid={news.thumbnail.childImageSharp.fluid} />
                 )}
               </ImageWrapper>
-            </ArtistListItem>
+            </NewsListItem>
           );
         })}
-      </ArtistListWrapper>
+      </NewsListWrapper>
     </Layout>
   );
 };
 
-export default Artists;
+export default News;
 
-Artists.propTypes = {
+News.propTypes = {
   data: PropTypes.shape({
-    allStrapiArtists: PropTypes.shape({
+    allStrapiGallerynews: PropTypes.shape({
       edges: PropTypes.array.isRequired,
     }),
   }).isRequired,
@@ -93,12 +91,12 @@ Artists.propTypes = {
 };
 
 export const pageQuery = graphql`
-  query ArtistsQuery {
-    allStrapiArtists(sort: { fields: name, order: ASC }, limit: -1) {
+  query NewsQuery {
+    allStrapiGallerynews(sort: { fields: title, order: ASC }, limit: -1) {
       edges {
         node {
           id
-          name
+          title
           thumbnail {
             childImageSharp {
               fluid(maxWidth: 290, quality: 50) {
@@ -106,8 +104,7 @@ export const pageQuery = graphql`
               }
             }
           }
-          isFeatured
-          biography
+          description
         }
       }
     }

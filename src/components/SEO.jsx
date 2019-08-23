@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 import { graphql, StaticQuery } from 'gatsby';
 import config from '../../config/website';
 
-const replaceTrailing = _path => _path.replace(/\/$/, ``);
+const replaceTrailing = _path => {
+  if (!_path) {
+    return '';
+  }
+  return _path.replace(/\/$/, ``);
+};
 
 const Head = props => {
   const { postNode, pathname, article, single, data } = props;

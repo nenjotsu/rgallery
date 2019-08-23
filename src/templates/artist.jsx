@@ -77,16 +77,18 @@ const ArtistTemplate = ({ data, location }) => {
         <animated.div style={contentProps}>
           {artist.biography && <ReactMarkdown source={artist.biography} />}
         </animated.div>
-        <div className="masonry">
-          {trailArtworks.map((style, index) => (
-            <ArtworkItem
-              testid={`/Artworks_${artworks[index].id}`}
-              style={style}
-              key={artworks[index].id}
-              node={artworks[index]}
-            />
-          ))}
-        </div>
+        {artworks.length > 0 && (
+          <div className="masonry">
+            {trailArtworks.map((style, index) => (
+              <ArtworkItem
+                testid={`/Artworks_${artworks[index].id}`}
+                style={style}
+                key={artworks[index].id}
+                node={artworks[index]}
+              />
+            ))}
+          </div>
+        )}
       </Container>
     </Layout>
   );

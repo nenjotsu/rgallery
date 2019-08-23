@@ -2,26 +2,13 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
-// import { useTrail, animated } from 'react-spring';
 import ReactMarkdown from 'react-markdown';
 
 import { animated, useSpring, useTrail, config } from 'react-spring';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import _filter from 'lodash/filter';
-import {
-  Layout,
-  ArtistItem,
-  ArtistItemFeatured,
-  Container,
-} from '../../components';
-
-const ListWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  width: 100%;
-  padding: 20px;
-`;
+import { Layout, Container } from '../../components';
 
 const ArtistListWrapper = styled.div`
   padding-left: 30px;

@@ -51,7 +51,7 @@ const ArtistTemplate = ({ data, location }) => {
 
   const trailArtworks = useTrail(artworks.length, animation.opacity);
 
-  const pathname = `R Gallery ${artist.name} ${location.pathname}`;
+  const pathname = ` ${artist.name} ${location.pathname}`;
 
   return (
     <Layout pathname={pathname} customSEO>

@@ -95,9 +95,11 @@ const ExhibitionTemplate = ({ data, location }) => {
     }
   `;
 
+  const seoText = ` Exhibition: ${exhibition.title} - ${exhibition.descriptions}`;
+
   return (
     <Layout pathname={location.pathname} customSEO>
-      <SEO pathname={location.pathname} />
+      <SEO pathname={seoText} />
       <Hero>
         <BGImage customcolor={exhibition.color}>
           {exhibition.thumbnail && (

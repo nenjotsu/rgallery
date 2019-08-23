@@ -20,7 +20,7 @@ const reset = css`
     box-sizing: border-box;
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-size: 18px;
+    font-size: 14px;
     h1 {
       font-size: 2.441rem;
     }

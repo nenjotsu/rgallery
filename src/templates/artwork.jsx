@@ -86,9 +86,9 @@ const ArtworkTemplate = ({ data }) => {
     img: artwork.thumbnail.publicURL,
   };
 
-  const artworkTitleArtist = `Artwork: "${artwork.title}" by: ${artwork.artist.name} - Inquiry`;
+  const artworkTitleArtist = ` Artwork: ${artwork.title} by Artist: ${artwork.artist.name}`;
 
-  const emailSubject = encodeURIComponent(artworkTitleArtist);
+  const emailSubject = encodeURIComponent(`${artworkTitleArtist} - Inquiry`);
 
   return (
     <Layout pathname={artworkTitleArtist} customSEO>
@@ -138,7 +138,7 @@ const ArtworkTemplate = ({ data }) => {
           )}
         </animated.div>
         <ReactImageZoom className="img-zoom" {...ReactImageZoomProps} />
-        <p>
+        <p style={{ marginBottom: 50 }}>
           To inquire on available work of art, please call or text us at
           +63917-7180-777.
           <br />

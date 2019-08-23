@@ -81,7 +81,7 @@ const About = ({ location }) => {
               Address: 26 V. Luna Ave, Diliman, Quezon City, 1100 Metro Manila
             </p>
 
-            <p>
+            <p style={{ marginBottom: 50 }}>
               To inquire on available work of art, please call or text us at
               +63917-7180-777.
               <br />

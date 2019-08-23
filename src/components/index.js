@@ -8,6 +8,7 @@ import ProjectItem from './ProjectItem';
 import ExhibitionItem from './ExhibitionItem';
 import ArtworkItem from './ArtworkItem';
 import ArtistItem from './ArtistItem';
+import ArtistItemFeatured from './ArtistItemFeatured';
 import SEO from './SEO';
 import RandomColor, { hexToRGB } from './RandomColor';
 
@@ -22,6 +23,7 @@ export {
   ExhibitionItem,
   ArtworkItem,
   ArtistItem,
+  ArtistItemFeatured,
   SEO,
   RandomColor,
   hexToRGB,

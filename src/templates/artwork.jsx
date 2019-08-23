@@ -138,7 +138,7 @@ const ArtworkTemplate = ({ data }) => {
           )}
         </animated.div>
         <ReactImageZoom className="img-zoom" {...ReactImageZoomProps} />
-        <p>
+        <p style={{ marginBottom: 50 }}>
           To inquire on available work of art, please call or text us at
           +63917-7180-777.
           <br />

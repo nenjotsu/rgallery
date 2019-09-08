@@ -239,7 +239,7 @@ export const pageQuery = graphql`
           name
           thumbnail {
             childImageSharp {
-              fluid(maxWidth: 850, quality: 50) {
+              fluid(maxWidth: 1000, quality: 80) {
                 ...GatsbyImageSharpFluid
               }
             }

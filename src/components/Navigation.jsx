@@ -122,6 +122,15 @@ const Navigation = () => (
     query={query}
     render={data => (
       <Wrapper data-testid="navigation">
+        <Name>
+          <Link to="/" data-testid="home-title-link">
+            <img
+              style={{ maxHeight: 40 }}
+              src={MainLogo}
+              alt={config.siteTitle}
+            />
+          </Link>
+        </Name>
         <Nav>
           {data.nav.edges.map((nav, index) => (
             <Link
@@ -144,15 +153,6 @@ const Navigation = () => (
             </Link>
           ))}
         </Nav>
-        <Name>
-          <Link to="/" data-testid="home-title-link">
-            <img
-              style={{ maxHeight: 40 }}
-              src={MainLogo}
-              alt={config.siteTitle}
-            />
-          </Link>
-        </Name>
 
         <SocialMedia>
           <a

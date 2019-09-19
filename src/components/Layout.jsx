@@ -4,7 +4,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import 'typeface-merriweather';
 import 'typeface-roboto';
 import SEO from './SEO';
-import Navigation from './Navigation';
+import Navigation from './Navigation2/main';
 import Footer from './Footer';
 import theme from '../../config/theme';
 import reset from '../styles/reset';

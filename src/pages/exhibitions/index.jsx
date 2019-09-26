@@ -1,6 +1,7 @@
 /* eslint react/display-name: 0 */
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+import { Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import * as moment from 'moment';
@@ -12,9 +13,6 @@ import { Layout, Container } from '../../components';
 const ExhibitionWrapper = styled.div`
   margin-top: 30px;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 10% 90%;
-  grid-gap: 30px;
 `;
 
 const NewsListWrapper = styled.div`
@@ -28,9 +26,6 @@ const NewsListItem = styled.div`
   min-height: 350px;
   background: #f9f9f9;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 60% 30%;
-  grid-gap: 30px;
   margin-bottom: 10px;
 `;
 
@@ -107,51 +102,75 @@ const Exhibitions = ({ data, location }) => {
   return (
     <Layout pathname={location.pathname}>
       <ExhibitionWrapper>
-        <ExhibitionListWrapper>
-          {trail.map((_, index) => (
-            <div key={`${list[index].node.id}`}>
-              <a href={`#${list[index].node.id}`}>{list[index].node.title}</a>
-            </div>
-          ))}
-        </ExhibitionListWrapper>
-        <NewsListWrapper>
-          {trail.map((_, index) => {
-            const exhibition = list[index].node;
-            return (
-              <NewsListItem key={exhibition.id} id={exhibition.id}>
-                <Container type="text">
-                  <animated.div style={contentProps}>
-                    <Link to={exhibition.id}>
-                      <h3>{exhibition.title}</h3>
-                    </Link>
-                    <InformationWrapper style={infoProps}>
-                      <InfoBlock customcolor={exhibition.color}>
-                        <div>Starts</div>
-                        <div>
-                          {moment(exhibition.date_from).format('MMM DD YYYY')}
-                        </div>
-                      </InfoBlock>
-                      <InfoBlock customcolor={exhibition.color}>
-                        <div>Ends</div>
-                        <div>
-                          {moment(exhibition.date_to).format('MMM DD YYYY')}
-                        </div>
-                      </InfoBlock>
-                    </InformationWrapper>
-                    {exhibition.descriptions && (
-                      <ReactMarkdown source={exhibition.descriptions} />
-                    )}
-                  </animated.div>
-                </Container>
-                <ImageWrapper>
-                  {exhibition.thumbnail && (
-                    <Img fluid={exhibition.thumbnail.childImageSharp.fluid} />
-                  )}
-                </ImageWrapper>
-              </NewsListItem>
-            );
-          })}
-        </NewsListWrapper>
+        <Row>
+          <Col xs={0} md={4}>
+            <ExhibitionListWrapper>
+              {trail.map((_, index) => (
+                <div key={`${list[index].node.id}`}>
+                  <a href={`#${list[index].node.id}`}>
+                    {list[index].node.title}
+                  </a>
+                </div>
+              ))}
+            </ExhibitionListWrapper>
+          </Col>
+          <Col xs={24} md={20}>
+            <NewsListWrapper>
+              {trail.map((_, index) => {
+                const exhibition = list[index].node;
+                return (
+                  <NewsListItem key={exhibition.id} id={exhibition.id}>
+                    <Row>
+                      <Col xs={24} md={16}>
+                        <Container type="text">
+                          <animated.div style={contentProps}>
+                            <Link to={exhibition.id}>
+                              <h3>{exhibition.title}</h3>
+                            </Link>
+                            <InformationWrapper style={infoProps}>
+                              <InfoBlock customcolor={exhibition.color}>
+                                <div>Starts</div>
+                                <div
+                                  style={{ fontSize: '.8em', marginBottom: 20 }}
+                                >
+                                  {moment(exhibition.date_from).format(
+                                    'MMM DD YYYY',
+                                  )}
+                                </div>
+                              </InfoBlock>
+                              <InfoBlock customcolor={exhibition.color}>
+                                <div>Ends</div>
+                                <div
+                                  style={{ fontSize: '.8em', marginBottom: 20 }}
+                                >
+                                  {moment(exhibition.date_to).format(
+                                    'MMM DD YYYY',
+                                  )}
+                                </div>
+                              </InfoBlock>
+                            </InformationWrapper>
+                            {exhibition.descriptions && (
+                              <ReactMarkdown source={exhibition.descriptions} />
+                            )}
+                          </animated.div>
+                        </Container>
+                      </Col>
+                      <Col xs={24} md={8}>
+                        <ImageWrapper>
+                          {exhibition.thumbnail && (
+                            <Img
+                              fluid={exhibition.thumbnail.childImageSharp.fluid}
+                            />
+                          )}
+                        </ImageWrapper>
+                      </Col>
+                    </Row>
+                  </NewsListItem>
+                );
+              })}
+            </NewsListWrapper>
+          </Col>
+        </Row>
       </ExhibitionWrapper>
     </Layout>
   );

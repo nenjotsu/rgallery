@@ -11,6 +11,7 @@ module.exports = {
     author: 'nenjotsu',
   },
   plugins: [
+    'gatsby-plugin-antd',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {

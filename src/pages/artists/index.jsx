@@ -1,6 +1,7 @@
 /* eslint react/display-name: 0 */
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import { Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
@@ -22,9 +23,6 @@ const ArtistListItem = styled.div`
   background: #f9f9f9;
   margin-top: 30px;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 60% 35%;
-  grid-gap: 30px;
 `;
 
 const ImageWrapper = styled.div`
@@ -51,6 +49,19 @@ const Artists = ({ data, location }) => {
     to: { opacity: 1 },
   });
 
+  const SpanConfigLeft = {
+    xs: {
+      span: 24,
+    },
+    md: { span: 16 },
+  };
+  const SpanConfigRight = {
+    xs: {
+      span: 24,
+    },
+    md: { span: 8 },
+  };
+
   return (
     <Layout pathname={location.pathname}>
       <ArtistListWrapper>
@@ -58,21 +69,27 @@ const Artists = ({ data, location }) => {
           const artist = list[index].node;
           return (
             <ArtistListItem key={artist.id}>
-              <Container type="text">
-                <animated.div style={contentProps}>
-                  <Link to={`/${artist.id}`}>
-                    <h3>{artist.name}</h3>
-                  </Link>
-                  {artist.biography && (
-                    <ReactMarkdown source={artist.biography} />
-                  )}
-                </animated.div>
-              </Container>
-              <ImageWrapper>
-                {artist.thumbnail && (
-                  <Img fluid={artist.thumbnail.childImageSharp.fluid} />
-                )}
-              </ImageWrapper>
+              <Row key={artist.id}>
+                <Col {...SpanConfigLeft}>
+                  <Container type="text">
+                    <animated.div style={contentProps}>
+                      <Link to={`/${artist.id}`}>
+                        <h1>{artist.name}</h1>
+                      </Link>
+                      {artist.biography && (
+                        <ReactMarkdown source={artist.biography} />
+                      )}
+                    </animated.div>
+                  </Container>
+                </Col>
+                <Col {...SpanConfigRight}>
+                  <ImageWrapper>
+                    {artist.thumbnail && (
+                      <Img fluid={artist.thumbnail.childImageSharp.fluid} />
+                    )}
+                  </ImageWrapper>
+                </Col>
+              </Row>
             </ArtistListItem>
           );
         })}

@@ -2,21 +2,22 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import { Button } from 'antd';
 import Img from 'gatsby-image';
-import { LeftContent } from './styled';
+import { RightContent } from './styled';
 
-const RightJumbotron = ({ exhibitions }) => {
-  console.log('exhibitions', exhibitions);
+const RightJumbotron = ({ exhibitions, currentExhibition }) => {
   return (
     <Row>
       <Col xs={{ span: 24 }} md={{ span: 16 }}>
-        <LeftContent>
-          {exhibitions && exhibitions[2].node.thumbnail && (
-            <Img fluid={exhibitions[2].node.thumbnail.childImageSharp.fluid} />
+        <RightContent>
+          {exhibitions && exhibitions[currentExhibition].node.thumbnail && (
+            <Img
+              fluid={
+                exhibitions[currentExhibition].node.thumbnail.childImageSharp
+                  .fluid
+              }
+            />
           )}
-        </LeftContent>
-      </Col>
-      <Col xs={{ span: 24 }} md={{ span: 8 }}>
-        Info
+        </RightContent>
       </Col>
     </Row>
   );

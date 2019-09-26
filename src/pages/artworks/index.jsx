@@ -98,7 +98,7 @@ const Artworks = ({ data, location }) => {
           return (
             <div
               key={artwork.id}
-              className="item"
+              className="item-artwork-page"
               style={{
                 ...style,
               }}

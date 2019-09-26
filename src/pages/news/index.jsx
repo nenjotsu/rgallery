@@ -2,6 +2,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
+import { Row, Col } from 'antd';
 import ReactMarkdown from 'react-markdown';
 
 import { animated, useSpring, useTrail, config } from 'react-spring';
@@ -22,9 +23,6 @@ const NewsListItem = styled.div`
   background: #f9f9f9;
   margin-top: 30px;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 60% 30%;
-  grid-gap: 30px;
 `;
 
 const ImageWrapper = styled.div`
@@ -51,6 +49,19 @@ const News = ({ data, location }) => {
     to: { opacity: 1 },
   });
 
+  const SpanConfigLeft = {
+    xs: {
+      span: 24,
+    },
+    md: { span: 16 },
+  };
+  const SpanConfigRight = {
+    xs: {
+      span: 24,
+    },
+    md: { span: 8 },
+  };
+
   return (
     <Layout pathname={location.pathname}>
       <NewsListWrapper>
@@ -58,19 +69,25 @@ const News = ({ data, location }) => {
           const news = list[index].node;
           return (
             <NewsListItem key={news.id}>
-              <Container type="text">
-                <animated.div style={contentProps}>
-                  <h3>{news.title}</h3>
-                  {news.description && (
-                    <ReactMarkdown source={news.description} />
-                  )}
-                </animated.div>
-              </Container>
-              <ImageWrapper>
-                {news.thumbnail && (
-                  <Img fluid={news.thumbnail.childImageSharp.fluid} />
-                )}
-              </ImageWrapper>
+              <Row key={news.id}>
+                <Col {...SpanConfigLeft}>
+                  <Container type="text">
+                    <animated.div style={contentProps}>
+                      <h3>{news.title}</h3>
+                      {news.description && (
+                        <ReactMarkdown source={news.description} />
+                      )}
+                    </animated.div>
+                  </Container>
+                </Col>
+                <Col {...SpanConfigRight}>
+                  <ImageWrapper>
+                    {news.thumbnail && (
+                      <Img fluid={news.thumbnail.childImageSharp.fluid} />
+                    )}
+                  </ImageWrapper>
+                </Col>
+              </Row>
             </NewsListItem>
           );
         })}
@@ -99,7 +116,7 @@ export const pageQuery = graphql`
           title
           thumbnail {
             childImageSharp {
-              fluid(maxWidth: 290, quality: 50) {
+              fluid(maxWidth: 300, quality: 80) {
                 ...GatsbyImageSharpFluid
               }
             }

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { FaInstagram, FaFacebook, FaDribbble } from 'react-icons/fa';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import styled from 'styled-components';
 import config from '../../config/website';
+import { navs } from '../common/constants';
 import MainLogo from '../images/main-logo.jpg';
 
 const Wrapper = styled.header`
@@ -94,29 +95,6 @@ const SocialMedia = styled.div`
 
 // Grabs all MDX files from src/pages and puts them into the navigation
 
-const navs = [
-  {
-    slug: '/about',
-    title: 'About',
-  },
-  {
-    slug: '/artists',
-    title: 'Artists',
-  },
-  {
-    slug: '/artworks',
-    title: 'Artworks',
-  },
-  {
-    slug: '/news',
-    title: 'News',
-  },
-  {
-    slug: '/exhibitions',
-    title: 'Exhibitions',
-  },
-];
-
 const Navigation = () => (
   <StaticQuery
     query={query}
@@ -167,7 +145,7 @@ const Navigation = () => (
             href="https://www.facebook.com/rgalleryph"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="FAcebook"
+            aria-label="Facebook"
           >
             <FaFacebook />
           </a>

@@ -44,10 +44,17 @@ html {
   }
 }
 
+.item-artwork-page {
+  box-sizing: border-box;
+  break-inside: avoid;
+  padding: 30px;
+  counter-increment: item-counter;
+}
+
 .item {
   box-sizing: border-box;
   break-inside: avoid;
-  padding: 10px;
+  padding: 5px;
   counter-increment: item-counter;
 }
 

@@ -68,3 +68,18 @@ export const Service = styled.div`
   opacity: 0.9;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 `;
+
+export const AddressTextMain = styled.h2`
+  font-size: 2em;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-top: 4em;
+  margin-bottom: 1em;
+  text-align: center;
+`;
+export const AddressTextSub = styled.p`
+  font-size: 1.1em;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-top: 1em;
+  margin-bottom: 4em;
+  text-align: center;
+`;

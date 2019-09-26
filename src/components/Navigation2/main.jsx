@@ -12,7 +12,7 @@ const Navigation = () => {
     <Row>
       <Col key="LeftNav" {...SpanConfig}>
         <LeftNav>
-          <Link to="/v2" data-testid="home-title-link">
+          <Link to="/" data-testid="home-title-link">
             <LogoBrand src={MainLogo} alt={config.siteTitle} />
           </Link>
         </LeftNav>

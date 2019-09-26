@@ -14,12 +14,12 @@ export const RightNav = styled.nav`
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  font-size: 16px;
+  font-size: 1.1em;
   color: #f2f1f0;
   text-transform: uppercase;
   padding: 1.5em;
   a:not(:first-child) {
-    margin-left: 2rem;
+    margin-left: 1.5rem;
   }
 `;
 

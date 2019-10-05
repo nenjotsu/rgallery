@@ -59,7 +59,7 @@ const Index = ({ data, location }) => {
       <img
         src={CoverImg}
         alt="R Gallery Social Pictures"
-        style={{ marginBottom: -70 }}
+        style={{ marginBottom: -70, width: '100%' }}
       />
       <section key="footer" style={{ background: '#000' }}>
         <Footer />

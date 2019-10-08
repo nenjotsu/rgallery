@@ -141,12 +141,16 @@ const Artworks = ({ data, location }) => {
                     className="item__img"
                     key={artwork.id}
                     fluid={artwork.thumbnail.childImageSharp.fluid}
-                    alt={`${artwork.title} by ${artwork.artist.name}`}
+                    alt={`${artwork.title} by ${_.get(
+                      artwork,
+                      'artist.name',
+                      '',
+                    )}`}
                   />
                 )}
-                <p
-                  style={{ fontSize: '.3em', textAlign: 'center' }}
-                >{`${artwork.title} by: ${artwork.artist.name}`}</p>
+                <p style={{ fontSize: '.3em', textAlign: 'center' }}>{`${
+                  artwork.title
+                } by: ${_.get(artwork, 'artist.name', '')}`}</p>
               </div>
             </div>
           );

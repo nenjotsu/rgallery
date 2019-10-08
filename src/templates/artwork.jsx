@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _get from 'lodash/get';
 import { animated, useSpring, config } from 'react-spring';
 import { Link, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
@@ -86,7 +87,11 @@ const ArtworkTemplate = ({ data }) => {
     img: artwork.thumbnail.publicURL,
   };
 
-  const artworkTitleArtist = ` Artwork: ${artwork.title} by Artist: ${artwork.artist.name}`;
+  const artworkTitleArtist = ` Artwork: ${artwork.title} by Artist: ${_get(
+    artwork,
+    'artist.name',
+    '',
+  )}`;
 
   const emailSubject = encodeURIComponent(`${artworkTitleArtist} - Inquiry`);
 
@@ -107,8 +112,8 @@ const ArtworkTemplate = ({ data }) => {
             <InfoBlock customcolor={artwork.color}>
               <div>Artist</div>
               <div>
-                <Link to={`Artists_${artwork.artist.id}`}>
-                  {artwork.artist.name}
+                <Link to={`Artists_${_get(artwork, 'artist.id', '')}`}>
+                  {_get(artwork, 'artist.name', '')}
                 </Link>
               </div>
             </InfoBlock>
@@ -118,7 +123,7 @@ const ArtworkTemplate = ({ data }) => {
             </InfoBlock>
             <InfoBlock customcolor={artwork.color}>
               <div>Size</div>
-              <div>{artwork.sizes.descriptions}</div>
+              <div>{_get(artwork, 'sizes.descriptions', '')}</div>
             </InfoBlock>
             <InfoBlock customcolor={artwork.color}>
               <div>Exhibition</div>

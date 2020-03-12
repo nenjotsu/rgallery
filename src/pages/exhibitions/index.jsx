@@ -1,14 +1,14 @@
 /* eslint react/display-name: 0 */
-import React from 'react';
-import { Link, graphql } from 'gatsby';
-import { Row, Col } from 'antd';
-import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
-import * as moment from 'moment';
-import { animated, useSpring, useTrail, config } from 'react-spring';
-import Img from 'gatsby-image';
-import styled from 'styled-components';
-import { Layout, Container } from '../../components';
+import React from "react";
+import { Link, graphql } from "gatsby";
+import { Row, Col } from "antd";
+import PropTypes from "prop-types";
+import ReactMarkdown from "react-markdown";
+import * as moment from "moment";
+import { animated, useSpring, useTrail, config } from "react-spring";
+import Img from "gatsby-image";
+import styled from "styled-components";
+import { Layout, Container } from "../../components";
 
 const ExhibitionWrapper = styled.div`
   margin-top: 30px;
@@ -82,21 +82,21 @@ const Exhibitions = ({ data, location }) => {
 
   const trail = useTrail(list.length, {
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const infoProps = useSpring({
     config: config.slow,
     delay: 500,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const contentProps = useSpring({
     config: config.slow,
     delay: 1000,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   return (
@@ -125,30 +125,34 @@ const Exhibitions = ({ data, location }) => {
                         <Container type="text">
                           <animated.div style={contentProps}>
                             <Link to={exhibition.id}>
-                              <h3>{exhibition.title}</h3>
+                              <h2 style={{ fontWeight: 900 }}>
+                                {exhibition.title}
+                              </h2>
                             </Link>
+                            <hr />
                             <InformationWrapper style={infoProps}>
                               <InfoBlock customcolor={exhibition.color}>
                                 <div>Starts</div>
                                 <div
-                                  style={{ fontSize: '.8em', marginBottom: 20 }}
+                                  style={{ fontSize: ".8em", marginBottom: 20 }}
                                 >
                                   {moment(exhibition.date_from).format(
-                                    'MMM DD YYYY',
+                                    "MMM DD YYYY"
                                   )}
                                 </div>
                               </InfoBlock>
                               <InfoBlock customcolor={exhibition.color}>
                                 <div>Ends</div>
                                 <div
-                                  style={{ fontSize: '.8em', marginBottom: 20 }}
+                                  style={{ fontSize: ".8em", marginBottom: 20 }}
                                 >
                                   {moment(exhibition.date_to).format(
-                                    'MMM DD YYYY',
+                                    "MMM DD YYYY"
                                   )}
                                 </div>
                               </InfoBlock>
                             </InformationWrapper>
+                            <hr />
                             {exhibition.descriptions && (
                               <ReactMarkdown source={exhibition.descriptions} />
                             )}
@@ -181,10 +185,10 @@ export default Exhibitions;
 Exhibitions.propTypes = {
   data: PropTypes.shape({
     allStrapiExhibitions: PropTypes.shape({
-      edges: PropTypes.array.isRequired,
-    }),
+      edges: PropTypes.array.isRequired
+    })
   }).isRequired,
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 export const pageQuery = graphql`

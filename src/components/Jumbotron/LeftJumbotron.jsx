@@ -1,18 +1,19 @@
-import React from 'react';
-import moment from 'moment';
-import { Link } from 'gatsby';
-import { Row, Col, Icon } from 'antd';
-import { Button } from 'antd';
-import Img from 'gatsby-image';
+import React from "react";
+import moment from "moment";
+import { Link } from "gatsby";
+import { Row, Col, Icon } from "antd";
+import { Button } from "antd";
 import {
   LeftContent,
   ExhibitionTitle,
   DateRange,
   ExhibitionDescription,
-  ExhibitionNavigation,
-} from './styled';
+  ExhibitionNavigation
+} from "./styled";
 
 const LeftJumbotron = ({ exhibitions, onPrev, onNext, currentExhibition }) => {
+  const isDisabled = exhibitions.length === currentExhibition + 1;
+  const isExist = exhibitions && exhibitions[currentExhibition];
   return (
     <Row>
       <Col xs={{ span: 24 }} md={{ span: 8 }}></Col>
@@ -27,36 +28,47 @@ const LeftJumbotron = ({ exhibitions, onPrev, onNext, currentExhibition }) => {
             >
               <Icon type="arrow-left" />
             </a>
-            <a title="next" alt="next exhibition" onClick={onNext}>
+            <a
+              title="next"
+              alt="next exhibition"
+              onClick={onNext}
+              disabled={isDisabled}
+            >
               <Icon type="arrow-right" />
             </a>
           </ExhibitionNavigation>
           <ExhibitionTitle>
-            {exhibitions && exhibitions[currentExhibition].node.title}
+            {isExist && exhibitions[currentExhibition].node.title}
           </ExhibitionTitle>
-          <DateRange>
-            {`${exhibitions &&
-              moment(exhibitions[currentExhibition].node.date_from).format(
-                'MMM DD YYYY',
-              )} - ${exhibitions &&
-              moment(exhibitions[currentExhibition].node.date_to).format(
-                'MMM DD YYYY',
-              )}
+          {isExist && (
+            <DateRange>
+              {`${exhibitions &&
+                moment(exhibitions[currentExhibition].node.date_from).format(
+                  "MMM DD YYYY"
+                )} - ${exhibitions &&
+                moment(exhibitions[currentExhibition].node.date_to).format(
+                  "MMM DD YYYY"
+                )}
             `}
-          </DateRange>
-          <ExhibitionDescription>
-            {exhibitions &&
-              exhibitions[currentExhibition].node.descriptions.substring(
-                0,
-                899,
-              )}{' '}
-            {exhibitions[currentExhibition].node.descriptions.length > 899
-              ? '...'
-              : ''}
-          </ExhibitionDescription>
-          <Link to={exhibitions[currentExhibition].node.id}>
-            <Button size="large">Read More...</Button>
-          </Link>
+            </DateRange>
+          )}
+          {isExist && (
+            <ExhibitionDescription>
+              {exhibitions &&
+                exhibitions[currentExhibition].node.descriptions.substring(
+                  0,
+                  899
+                )}{" "}
+              {exhibitions[currentExhibition].node.descriptions.length > 899
+                ? "..."
+                : ""}
+            </ExhibitionDescription>
+          )}
+          {isExist && (
+            <Link to={exhibitions[currentExhibition].node.id}>
+              <Button size="small">Read More...</Button>
+            </Link>
+          )}
         </LeftContent>
       </Col>
     </Row>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
-import styled from 'styled-components';
-import config from '../../config/website';
-import { navs } from '../common/constants';
-import MainLogo from '../images/main-logo.jpg';
+import React from "react";
+import { Link, StaticQuery, graphql } from "gatsby";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
+import styled from "styled-components";
+import config from "../../config/website";
+import { navs } from "../common/constants";
+import MainLogo from "../images/main-logo.jpg";
 
 const Wrapper = styled.header`
   align-items: center;
@@ -14,7 +14,7 @@ const Wrapper = styled.header`
   z-index: 1000;
   background: #fff;
   -webkit-box-shadow: 0 2px 8px #f0f1f2;
-  box-shadow: 0 2px 8px #f0f1f2;
+  box-shadow: 0 3px 15px #0000008c;
   a {
     color: ${props => props.theme.colors.black};
     text-decoration: none;
@@ -52,7 +52,7 @@ const Name = styled.div`
   justify-content: center;
   a {
     font-size: 1.25rem;
-    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI",
       sans-serif;
     font-weight: 700;
     &:hover,

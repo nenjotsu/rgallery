@@ -1,15 +1,15 @@
 /* eslint react/display-name: 0 */
-import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { Row, Col } from 'antd';
-import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
+import React from "react";
+import { graphql, Link } from "gatsby";
+import { Row, Col } from "antd";
+import PropTypes from "prop-types";
+import ReactMarkdown from "react-markdown";
 
-import { animated, useSpring, useTrail, config } from 'react-spring';
-import styled from 'styled-components';
-import Img from 'gatsby-image';
-import _filter from 'lodash/filter';
-import { Layout, Container } from '../../components';
+import { animated, useSpring, useTrail, config } from "react-spring";
+import styled from "styled-components";
+import Img from "gatsby-image";
+import _filter from "lodash/filter";
+import { Layout, Container } from "../../components";
 
 const ArtistListWrapper = styled.div`
   padding-left: 30px;
@@ -39,27 +39,27 @@ const Artists = ({ data, location }) => {
 
   const trail = useTrail(list.length, {
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const contentProps = useSpring({
     config: config.slow,
     delay: 1000,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const SpanConfigLeft = {
     xs: {
-      span: 24,
+      span: 24
     },
-    md: { span: 16 },
+    md: { span: 16 }
   };
   const SpanConfigRight = {
     xs: {
-      span: 24,
+      span: 24
     },
-    md: { span: 8 },
+    md: { span: 8 }
   };
 
   return (
@@ -74,8 +74,17 @@ const Artists = ({ data, location }) => {
                   <Container type="text">
                     <animated.div style={contentProps}>
                       <Link to={`/${artist.id}`}>
-                        <h1>{artist.name}</h1>
+                        <h1
+                          style={{
+                            fontWeight: 900,
+                            marginBottom: 30,
+                            marginTop: 30
+                          }}
+                        >
+                          {artist.name}
+                        </h1>
                       </Link>
+                      <hr />
                       {artist.biography && (
                         <ReactMarkdown source={artist.biography} />
                       )}
@@ -103,10 +112,10 @@ export default Artists;
 Artists.propTypes = {
   data: PropTypes.shape({
     allStrapiArtists: PropTypes.shape({
-      edges: PropTypes.array.isRequired,
-    }),
+      edges: PropTypes.array.isRequired
+    })
   }).isRequired,
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 export const pageQuery = graphql`

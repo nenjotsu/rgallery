@@ -1,15 +1,15 @@
 /* eslint react/display-title: 0 */
-import React from 'react';
-import { graphql } from 'gatsby';
-import PropTypes from 'prop-types';
-import { Row, Col } from 'antd';
-import ReactMarkdown from 'react-markdown';
+import React from "react";
+import { graphql } from "gatsby";
+import PropTypes from "prop-types";
+import { Row, Col } from "antd";
+import ReactMarkdown from "react-markdown";
 
-import { animated, useSpring, useTrail, config } from 'react-spring';
-import styled from 'styled-components';
-import Img from 'gatsby-image';
-import _filter from 'lodash/filter';
-import { Layout, Container } from '../../components';
+import { animated, useSpring, useTrail, config } from "react-spring";
+import styled from "styled-components";
+import Img from "gatsby-image";
+import _filter from "lodash/filter";
+import { Layout, Container } from "../../components";
 
 const NewsListWrapper = styled.div`
   padding-left: 30px;
@@ -39,27 +39,27 @@ const News = ({ data, location }) => {
 
   const trail = useTrail(list.length, {
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const contentProps = useSpring({
     config: config.slow,
     delay: 1000,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const SpanConfigLeft = {
     xs: {
-      span: 24,
+      span: 24
     },
-    md: { span: 16 },
+    md: { span: 16 }
   };
   const SpanConfigRight = {
     xs: {
-      span: 24,
+      span: 24
     },
-    md: { span: 8 },
+    md: { span: 8 }
   };
 
   return (
@@ -73,7 +73,10 @@ const News = ({ data, location }) => {
                 <Col {...SpanConfigLeft}>
                   <Container type="text">
                     <animated.div style={contentProps}>
-                      <h3>{news.title}</h3>
+                      <h2 style={{ marginTop: 30, fontWeight: 900 }}>
+                        {news.title}
+                      </h2>
+                      <hr />
                       {news.description && (
                         <ReactMarkdown source={news.description} />
                       )}
@@ -101,10 +104,10 @@ export default News;
 News.propTypes = {
   data: PropTypes.shape({
     allStrapiGallerynews: PropTypes.shape({
-      edges: PropTypes.array.isRequired,
-    }),
+      edges: PropTypes.array.isRequired
+    })
   }).isRequired,
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 export const pageQuery = graphql`

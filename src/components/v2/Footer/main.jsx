@@ -1,11 +1,11 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import { Link } from 'gatsby';
-import { SpanConfig } from './enums';
-import LogoGray from '../../../images/logo-gray.jpg';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
-import { TopFour, FooterLabel, FooterAddress } from './styled';
-import { navs, termsList } from '../../../common/constants';
+import React from "react";
+import { Row, Col } from "antd";
+import { Link } from "gatsby";
+import { SpanConfig } from "./enums";
+import LogoGray from "../../../images/logo-gray.jpg";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
+import { TopFour, FooterLabel, FooterAddress } from "./styled";
+import { navs, termsList } from "../../../common/constants";
 
 const LatestExhibitions = () => {
   return (
@@ -14,7 +14,7 @@ const LatestExhibitions = () => {
         <Col {...SpanConfig}>
           <FooterLabel>Site Map</FooterLabel>
           {navs.map(n => (
-            <Link to={n.slug}>
+            <Link to={n.slug} key={n.slug}>
               <p>{n.title}</p>
             </Link>
           ))}
@@ -22,7 +22,7 @@ const LatestExhibitions = () => {
         <Col {...SpanConfig}>
           <FooterLabel>About</FooterLabel>
           {termsList.map(n => (
-            <Link to="/">
+            <Link to="/" key={n.title}>
               <p>{n.title}</p>
             </Link>
           ))}
@@ -70,7 +70,7 @@ const LatestExhibitions = () => {
           <img
             src={LogoGray}
             alt="RGallery Contemporary Arts"
-            style={{ margin: '1em', width: 100 }}
+            style={{ margin: "1em", width: 100 }}
           />
         </Col>
       </Row>

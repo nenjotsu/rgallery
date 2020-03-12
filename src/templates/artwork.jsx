@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import _get from 'lodash/get';
-import { animated, useSpring, config } from 'react-spring';
-import { Link, graphql } from 'gatsby';
-import ReactMarkdown from 'react-markdown';
-import ReactImageZoom from 'react-image-zoom';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import _get from "lodash/get";
+import { animated, useSpring, config } from "react-spring";
+import { Link, graphql } from "gatsby";
+import ReactMarkdown from "react-markdown";
+import ReactImageZoom from "react-image-zoom";
 
-import Img from 'gatsby-image';
+import Img from "gatsby-image";
 import {
   SEO,
   Container,
@@ -15,8 +15,8 @@ import {
   Hero,
   BGImage,
   RandomColor,
-  hexToRGB,
-} from '../components';
+  hexToRGB
+} from "../components";
 
 const Content = styled(Container)`
   position: absolute;
@@ -59,38 +59,38 @@ const ArtworkTemplate = ({ data }) => {
   const color = RandomColor();
   const pastelColor = hexToRGB(color, 0.8);
 
-  const artwork = { ...data.strapiArtworks, color: '#000' };
+  const artwork = { ...data.strapiArtworks, color: "#000" };
 
   const titleProps = useSpring({
     config: config.slow,
-    from: { opacity: 0, transform: 'translate3d(0, -30px, 0)' },
-    to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+    from: { opacity: 0, transform: "translate3d(0, -30px, 0)" },
+    to: { opacity: 1, transform: "translate3d(0, 0, 0)" }
   });
 
   const infoProps = useSpring({
     config: config.slow,
     delay: 500,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const contentProps = useSpring({
     config: config.slow,
     delay: 1000,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   const ReactImageZoomProps = {
     width: 400,
     zoomWidth: 500,
-    img: artwork.thumbnail.publicURL,
+    img: artwork.thumbnail.publicURL
   };
 
   const artworkTitleArtist = ` Artwork: ${artwork.title} by Artist: ${_get(
     artwork,
-    'artist.name',
-    '',
+    "artist.name",
+    ""
   )}`;
 
   const emailSubject = encodeURIComponent(`${artworkTitleArtist} - Inquiry`);
@@ -112,8 +112,8 @@ const ArtworkTemplate = ({ data }) => {
             <InfoBlock customcolor={artwork.color}>
               <div>Artist</div>
               <div>
-                <Link to={`Artists_${_get(artwork, 'artist.id', '')}`}>
-                  {_get(artwork, 'artist.name', '')}
+                <Link to={`Artists_${_get(artwork, "artist.id", "")}`}>
+                  {_get(artwork, "artist.name", "")}
                 </Link>
               </div>
             </InfoBlock>
@@ -123,7 +123,7 @@ const ArtworkTemplate = ({ data }) => {
             </InfoBlock>
             <InfoBlock customcolor={artwork.color}>
               <div>Size</div>
-              <div>{_get(artwork, 'sizes.descriptions', '')}</div>
+              <div>{_get(artwork, "sizes.descriptions", "")}</div>
             </InfoBlock>
             <InfoBlock customcolor={artwork.color}>
               <div>Exhibition</div>
@@ -143,12 +143,12 @@ const ArtworkTemplate = ({ data }) => {
           )}
         </animated.div>
         <ReactImageZoom className="img-zoom" {...ReactImageZoomProps} />
-        <p style={{ marginBottom: 50 }}>
+        <p style={{ marginBottom: 50, marginTop: 20 }}>
           To inquire on available work of art, please call or text us at
           +63917-7180-777.
           <br />
-          You may also send us an email to{' '}
-          <strong>rgallery.ph@gmail.com</strong> or click{' '}
+          You may also send us an email to{" "}
+          <strong>rgallery.ph@gmail.com</strong> or click{" "}
           <a href={`mailto:rgallery.ph@gmail.com?subject=${emailSubject}`}>
             here.
           </a>
@@ -163,9 +163,9 @@ export default ArtworkTemplate;
 ArtworkTemplate.propTypes = {
   data: PropTypes.shape({
     strapiArtworks: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
+      title: PropTypes.string.isRequired
+    })
+  }).isRequired
 };
 
 export const pageQuery = graphql`

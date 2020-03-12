@@ -1,13 +1,13 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import PropTypes from 'prop-types';
-import { Layout } from '../components';
-import { AddressTextMain, AddressTextSub } from '../components/v2/styled';
-import LatestExhibitions from '../components/LatestExhibitions/main';
-import PanoramicImg from '../images/panoramic_default.jpg';
-import CoverImg from '../images/cover.jpg';
-import Footer from '../components/v2/Footer/main';
-import Jumbotron from '../components/Jumbotron/main';
+import React from "react";
+import { graphql } from "gatsby";
+import PropTypes from "prop-types";
+import { Layout } from "../components";
+import { AddressTextMain, AddressTextSub } from "../components/v2/styled";
+import LatestExhibitions from "../components/LatestExhibitions/main";
+import PanoramicImg from "../images/panoramic_default.jpg";
+import CoverImg from "../images/cover.jpg";
+import Footer from "../components/v2/Footer/main";
+import Jumbotron from "../components/Jumbotron/main";
 
 const Index = ({ data, location }) => {
   const [currentExhibition, setCurrentExhibition] = React.useState(0);
@@ -44,8 +44,34 @@ const Index = ({ data, location }) => {
       <img
         src={PanoramicImg}
         alt="R Gallery Social Pictures"
-        style={{ width: '100%' }}
+        style={{ width: "100%" }}
       />
+      <section style={{ minHeight: 300, textAlign: "center" }}>
+        <iframe
+          width="33.33%"
+          height="315"
+          src="https://www.youtube.com/embed/mi3YKvB4nGU"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          width="33.33%"
+          height="315"
+          src="https://www.youtube.com/embed/Eh2XznJAARc"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          width="33.33%"
+          height="315"
+          src="https://www.youtube.com/embed/vvrYBIctMtE"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </section>
       <section key="address" style={{ minHeight: 300 }}>
         <AddressTextMain>
           Address: 26 V. Luna Ave, Diliman, Quezon City, 1100 Metro Manila
@@ -59,9 +85,9 @@ const Index = ({ data, location }) => {
       <img
         src={CoverImg}
         alt="R Gallery Social Pictures"
-        style={{ marginBottom: -70, width: '100%' }}
+        style={{ marginBottom: -70, width: "100%" }}
       />
-      <section key="footer" style={{ background: '#000' }}>
+      <section key="footer" style={{ background: "#000" }}>
         <Footer />
       </section>
     </Layout>
@@ -73,13 +99,13 @@ export default Index;
 Index.propTypes = {
   data: PropTypes.shape({
     allStrapiExhibitions: PropTypes.shape({
-      edges: PropTypes.array.isRequired,
+      edges: PropTypes.array.isRequired
     }),
     allStrapiArtworks: PropTypes.shape({
-      edges: PropTypes.array.isRequired,
-    }),
+      edges: PropTypes.array.isRequired
+    })
   }).isRequired,
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 export const pageQuery = graphql`

@@ -1,29 +1,33 @@
 export const SpanConfig = {
   xs: {
-    span: 24,
+    span: 24
   },
-  md: { span: 12 },
+  md: { span: 12 }
 };
 
 export const NavRoutes = [
   {
-    slug: '/about',
-    title: 'About',
+    slug: "/",
+    title: "Home"
   },
   {
-    slug: '/artists',
-    title: 'Artists',
+    slug: "/about",
+    title: "About"
   },
   {
-    slug: '/artworks',
-    title: 'Artworks',
+    slug: "/artists",
+    title: "Artists"
   },
   {
-    slug: '/news',
-    title: 'News',
+    slug: "/artworks",
+    title: "Artworks"
   },
   {
-    slug: '/exhibitions',
-    title: 'Exhibitions',
+    slug: "/news",
+    title: "News"
   },
+  {
+    slug: "/exhibitions",
+    title: "Exhibitions"
+  }
 ];

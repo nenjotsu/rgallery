@@ -1,11 +1,11 @@
 /* eslint react/display-name: 0 */
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { animated, useSpring, config } from 'react-spring';
-import { Container, Layout, Hero, BGImage } from '../../components';
-import AboutCover from '../../images/cover.jpg';
-import RGalleryMap from '../../images/rgallery_map.png';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { animated, useSpring, config } from "react-spring";
+import { Container, Layout, Hero, BGImage } from "../../components";
+import AboutCover from "../../images/cover.jpg";
+import RGalleryMap from "../../images/rgallery_map.png";
 
 const Content = styled(Container)`
   position: absolute;
@@ -27,17 +27,19 @@ const MapDiv = styled.div`
   }
 `;
 
+// dirty
+
 const About = ({ location }) => {
   const titleProps = useSpring({
     config: config.slow,
-    from: { opacity: 0, transform: 'translate3d(0, -30px, 0)' },
-    to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+    from: { opacity: 0, transform: "translate3d(0, -30px, 0)" },
+    to: { opacity: 1, transform: "translate3d(0, 0, 0)" }
   });
   const contentProps = useSpring({
     config: config.slow,
     delay: 500,
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
 
   return (
@@ -98,5 +100,5 @@ const About = ({ location }) => {
 export default About;
 
 About.propTypes = {
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
